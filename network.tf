@@ -34,21 +34,9 @@ resource "aws_subnet" "subnet-uat" {
   depends_on = [aws_internet_gateway.uat-gw]
 }
 
-resource "aws_eip" "ip-uat" {
-  vpc = true
-
-  instance = aws_spot_instance_request.test_worker.spot_instance_id
-  #associate_with_private_ip = aws_spot_instance_request.test_worker.private_ip
-  #network_interface = aws_network_interface.uat_nic.id
-
-  depends_on = [
-    aws_internet_gateway.uat-gw,
-    aws_spot_instance_request.test_worker
-  ]
-
-  tags = {
-    "Name" = "${var.app_name}-EIP"
-  }
+resource "aws_eip_association" "eip_assoc" {
+  instance_id   = aws_spot_instance_request.test_worker.spot_instance_id
+  allocation_id = data.aws_eip.by_filter.id
 }
 
 resource "aws_route_table_association" "subnet-association" {

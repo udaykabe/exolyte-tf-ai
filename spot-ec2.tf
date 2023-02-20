@@ -23,6 +23,8 @@ resource "aws_spot_instance_request" "test_worker" {
 
   subnet_id = aws_subnet.subnet-uat.id
 
+  # This provisioner uses the check-instance_state to ensure the instance
+  # status is in an "ok" state, otherwise the EIP association will fail
   provisioner "local-exec" {
     command = "${path.module}/scripts/check-instance-state.sh ${self.spot_instance_id}"
   }
@@ -34,6 +36,10 @@ resource "aws_spot_instance_request" "test_worker" {
     Managed     = "IaaC"
   }
 
+##################################################################
+# The following is no longer needed because of the use of the
+# 'aws_eip_association' block
+##################################################################
 #  provisioner "local-exec" {
 #    command = "aws ec2 associate-address --instance-id  ${self.spot_instance_id} --allocation-id ${data.aws_eip.by_filter.id}"
 #  }
