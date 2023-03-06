@@ -12,7 +12,7 @@ waitfor_sysstatus_ok_describe() {
     echo "Run Status: $STATE"
     SYSTEMSTATUS=$(aws ec2 describe-instance-status --instance-ids $instanceId --output text --query 'InstanceStatuses[*].SystemStatus.Status')
     echo "SystemStatus: $SYSTEMSTATUS"
-    if [[ $STATE != "running" && $SYSTEMSTATUS != "ok" ]]; then
+    if [[ $STATE != "running" || $SYSTEMSTATUS != "ok" ]]; then
       echo "Sleeping 5 ..."
       sleep 5
     fi
