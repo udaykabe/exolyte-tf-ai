@@ -24,7 +24,7 @@ output "default_gw" {
 }
 
 output "reserved_ip" {
-  value       = data.aws_eip.by_filter.id
+  value       = data.aws_eip.by_filter.public_ip
   description = "The assigned elastic IP"
 }
 
