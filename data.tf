@@ -6,6 +6,7 @@ data "aws_availability_zones" "available" {
   state = "available"
 }
 
+# Get most recent Spot Price for a given EC2 instance
 data "aws_ec2_spot_price" "get_spot_price" {
   instance_type     = var.type
   availability_zone = "us-east-1a"
