@@ -1,3 +1,5 @@
+data "aws_caller_identity" "current" {}
+
 locals {
   account_id = data.aws_caller_identity.current.account_id
   tags       = module.tags.tags_no_name
@@ -66,7 +68,7 @@ module "exolyte_image_pipeline" {
   version = "~> 2.0.3"
 
   description      = "Exolyte Image Pipeline"
-  name             = "exolyte-linux2-pipeline"
+  name             = "xol-lnx2-pipeline"
   tags             = local.tags
   image_recipe_arn = module.exolyte_image_recipe.recipe_arn
   public           = false
