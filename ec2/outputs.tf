@@ -37,3 +37,7 @@ output "spot_instance_id" {
   value       = aws_spot_instance_request.test_worker.spot_instance_id
   description = "The Spot Instance ID"
 }
+
+output "caller_identity" {
+  value = data.aws_caller_identity.current
+}
