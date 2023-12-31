@@ -33,4 +33,4 @@ override.tf.json
 /.project
 
 # Terraform lock files
-/.terraform.lock.hcl
+**/.terraform.lock.hcl
