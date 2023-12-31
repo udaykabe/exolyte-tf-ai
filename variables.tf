@@ -3,10 +3,11 @@ variable "app_name" {
   default     = "exoChatGPT"
 }
 
+# Amazon Linux 2 AMI (HVM) - Kernel 5.10, SSD Volume Type
 variable "ami" {
   type        = string
   description = "AMI ID of EC2 ECS instance"
-  default     = "ami-02f6e3cd6f1b8d2cc"
+  default     = "ami-00b8917ae86a424c9" # (64-bit (x86))
 
   validation {
     condition     = length(var.ami) > 4 && substr(var.ami, 0, 4) == "ami-"
@@ -51,7 +52,7 @@ variable "awsprops" {
   default = {
     region       = "us-east-1"
     vpc          = "vpc-5234832d"
-    ami          = "ami-0c1bea58988a989155"
+    ami          = "ami-079db87dc4c10ac91" # Amazon Linux 2023 AMI (64-bit (x86), uefi-preferred)
     itype        = "t2.micro"
     subnet       = "subnet-81896c8e"
     publicip     = true
@@ -59,3 +60,4 @@ variable "awsprops" {
     secgroupname = "IAC-Sec-Group"
   }
 }
+
