@@ -41,7 +41,7 @@ module "component_ansible" {
   description       = "Ansible Playbook Runner"
   name              = "ansible-playbook-runner"
   tags              = local.tags
-  playbook_repo     = "git::https://github.com/udaykabe/vagrant-dl.git"
+  playbook_repo     = var.playbook_repo
 }
 
 module "exolyte_image_recipe" {
